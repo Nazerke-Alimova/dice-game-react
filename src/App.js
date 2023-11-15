@@ -1,24 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import GameBox from './components/GameBox/GameBox';
+import { useState } from 'react';
 
 function App() {
+  const [winner, setWinner] = useState({ win: false, name: "" });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+     <GameBox        
+        plaer1={"PLAYER 1"}
+        plaer2={"PLAYER 2"}
+        winner={setWinner}/>
   );
 }
 

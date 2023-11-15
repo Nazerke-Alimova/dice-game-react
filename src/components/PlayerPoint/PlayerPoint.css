@@ -1,0 +1,18 @@
+.player_point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    padding: 20px;
+    color: white;
+    background-color: hsl(31, 87.7%, 41.6%);
+    border-radius: 14px;
+  }
+  .point_title {
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .cpoint_count {
+    font-size: 30px;
+  }

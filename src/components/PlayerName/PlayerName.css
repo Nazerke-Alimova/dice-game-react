@@ -1,0 +1,44 @@
+.player{
+  width: 374px; 
+  height: 442px;
+  background:rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  z-index: -1;
+}
+.player_name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 111px;
+  height: 96px;
+  }
+
+  #winner-player {
+    animation: currentUser;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+  }
+  @keyframes currentUser {
+    0%{
+        background:  hsl(15, 50%, 15%);
+    }
+    100%{
+        background-color: hsl(20, 62%, 75%);
+    }
+}
+  
+  .player_name h2 {
+    font-size: 25px;
+    line-height: 38px;
+    color: #171A1FFF;
+  }
+  .player_name span {
+    font-size: 32px;
+    color: #EE7D05FF;
+  }
+ 

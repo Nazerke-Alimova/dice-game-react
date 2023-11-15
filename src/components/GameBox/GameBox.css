@@ -1,0 +1,37 @@
+.game_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 740px;
+    height: 445px;
+    z-index: -0;
+  }
+  .buttons-div {
+    position: absolute;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    height: 338px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .buttons_down {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 86px;
+  }
+  .buttons-div svg {
+    width: 100px;
+    height: 100px;
+    animation: dice 0.2s;
+  }
+  @keyframes dice {
+    0% {
+      rotate: 0deg;
+    }
+    100% {
+      rotate: 720deg;
+    }
+  }
