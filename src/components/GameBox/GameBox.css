@@ -1,12 +1,13 @@
-.game_box {
+.gameBox {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 740px;
     height: 445px;
     z-index: -0;
+    gap: 5px;
   }
-  .buttons-div {
+  .btns {
     position: absolute;
     z-index: 4;
     display: flex;
@@ -15,14 +16,14 @@
     align-items: center;
     justify-content: space-between;
   }
-  .buttons_down {
+  .bbtns_d {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     height: 86px;
   }
-  .buttons-div svg {
+  .btns svg {
     width: 100px;
     height: 100px;
     animation: dice 0.2s;

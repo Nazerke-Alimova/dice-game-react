@@ -18,19 +18,12 @@
   height: 96px;
   }
 
-  #winner-player {
-    animation: currentUser;
-    animation-duration: 0.5s;
-    animation-fill-mode: forwards;
+  .winner-player {
+    background-color: black; 
+  } 
+  .winner-name {
+   color: red;
   }
-  @keyframes currentUser {
-    0%{
-        background:  hsl(15, 50%, 15%);
-    }
-    100%{
-        background-color: hsl(20, 62%, 75%);
-    }
-}
   
   .player_name h2 {
     font-size: 25px;

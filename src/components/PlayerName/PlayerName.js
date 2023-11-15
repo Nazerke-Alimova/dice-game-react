@@ -9,9 +9,9 @@ export default function PlayerName({
   currentpoints
 }){
     return(
-        <div className="player"  id={`${isWinner && 'winner-player'}`}>
-          <div className="player_name">       
-        <h2>{name}</h2>
+      <div className={`player ${isWinner ? 'winner-player' : ''}`}>
+         <div className='player_name'>     
+        <h2 className={isWinner ? 'winner-name' : ''}>{name}</h2>
         <span>{score}</span>
         </div>
         <PlayerPoint currentpoints={currentpoints} />

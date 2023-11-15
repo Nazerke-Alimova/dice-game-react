@@ -19,6 +19,8 @@ export default function GameBox({ plaer1, plaer2, winner }) {
   const [currentPointsTwo, setCurrentPointsTwo] = useState(0);
   const [currentPlayer, setCurrentPlayer] = useState(true);
   const [randomDice, setRandomDice] = useState(null);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [winningPlayer, setWinningPlayer] = useState(1);
   const diceIcons = [
     <BsFillDice1Fill />,
     <BsFillDice2Fill />,
@@ -28,70 +30,78 @@ export default function GameBox({ plaer1, plaer2, winner }) {
     <BsFillDice6Fill />,
   ];
 
+  const handleRollDice = () => {
+    if (!isGameOver) {
+      let random = Math.floor(Math.random() * 6 + 1);
+      setRandomDice(random);
+      if (random === 1) {
+        setCurrentPlayer(!currentPlayer);
+        setCurrentPointsOne(0);
+        setCurrentPointsTwo(0);
+      } else if (currentPlayer) {
+        setCurrentPointsOne(currentPointsOne + random);
+      } else {
+        setCurrentPointsTwo(currentPointsTwo + random);
+      }
+    }
+  };
+
+  const handleLeave = () => {
+    if (currentPlayer) {
+      setScoreOne(currentPointsOne + scoreOne);
+      if (currentPointsOne + scoreOne >= 10) {
+        setWinningPlayer(1);
+        setIsGameOver(true);
+        winner({ win: true, name: plaer1 });
+      }
+      setCurrentPointsOne(0);
+      setCurrentPlayer(false);
+    } else {
+      setScoreTwo(currentPointsTwo + scoreTwo);
+      if (currentPointsTwo + scoreTwo >= 10) {
+        setWinningPlayer(2);
+        setIsGameOver(true);
+        winner({ win: true, name: plaer2 });
+      }
+      setCurrentPointsTwo(0);
+      setCurrentPlayer(true);
+    }
+  };
+
+  const handleNewGame = () => {
+    setScoreOne(0);
+    setScoreTwo(0);
+    setCurrentPointsOne(0);
+    setCurrentPointsTwo(0);
+    setCurrentPlayer(true);
+    setRandomDice(null);
+    setIsGameOver(false);
+    setWinningPlayer('');
+    winner({ win: false, name: "" });
+  };
+
   return (
-   <div className="game_box">
+    <div className='gameBox'>
       <PlayerName
-        name={plaer2}
-        isWinner={currentPlayer}
+        name={plaer1}
+        isWinner={winningPlayer === 1 && isGameOver}
         score={scoreOne}
         currentpoints={currentPointsOne}
       />
-      <div className="buttons-div">
-        <Button
+      <div className="btns">
+      <Button
           value={"🐷 NEW GAME"}
-          onClick={() => {
-            setScoreOne(0);
-            setScoreTwo(0);
-            setCurrentPointsOne(0);
-            setCurrentPointsTwo(0);
-            setCurrentPlayer(true);
-            setRandomDice(null);
-            winner({ win: false, name: "" });
-          }}
+          onClick={handleNewGame}
         />
         {randomDice && diceIcons[randomDice - 1]}
-        <div className="buttons_down">
-          <Button
-            value={"🎲 ROLL THE DICE"}
-            onClick={() => {
-              let random = Math.floor(Math.random() * 6 + 1);
-              setRandomDice(random);
-              if (random === 1) {
-                setCurrentPlayer(!currentPlayer);
-                setCurrentPointsOne(0);
-                setCurrentPointsTwo(0);
-              } else if (currentPlayer) {
-                setCurrentPointsOne(currentPointsOne + random);
-              } else {
-                setCurrentPointsTwo(currentPointsTwo + random);
-              }
-            }}
-          />
-          <Button
-            value={"👌 LEAVE"}
-            onClick={() => {
-              if (currentPlayer) {
-                setScoreOne(currentPointsOne + scoreOne);
-                if (currentPointsOne + scoreOne >= 100) {
-                  winner({ win: true, name: plaer1 });
-                }
-                setCurrentPointsOne(0);
-                setCurrentPlayer(false);
-              } else {
-                setScoreTwo(currentPointsTwo + scoreTwo);
-                if (currentPointsTwo + scoreTwo >= 100) {
-                  winner({ win: true, name: plaer2 });
-                }
-                setCurrentPointsTwo(0);
-                setCurrentPlayer(true);
-              }
-            }}
-          />
+        <div className="bbtns_d">
+        <Button value={"🎲 ROLL THE DICE"} onClick={handleRollDice} />
+        <Button value={"👌 LEAVE"} onClick={handleLeave} />
         </div>
       </div>
       <PlayerName
         name={plaer2}
-        isWinner={!currentPlayer}
+        isWinner={winningPlayer === 2 && isGameOver}
         score={scoreTwo}
         currentpoints={currentPointsTwo}
       />

@@ -7,8 +7,8 @@ function App() {
   const [winner, setWinner] = useState({ win: false, name: "" });
   return (
      <GameBox        
-        plaer1={"PLAYER 1"}
-        plaer2={"PLAYER 2"}
+        plaer1={"PLAYER1"}
+        plaer2={"PLAYER2"}
         winner={setWinner}/>
   );
 }
